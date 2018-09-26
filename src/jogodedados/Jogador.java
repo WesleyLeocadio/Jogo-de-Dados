@@ -4,6 +4,11 @@ public class Jogador {
 
     private String nome;
     private int valorAposta;
+    
+    
+    public Jogador(String nome) {
+        this.nome = nome;
+    }
 
     public Jogador(String nome, int valorAposta) {
         this.nome = nome;
@@ -13,6 +18,8 @@ public class Jogador {
     public String getNome() {
         return nome;
     }
+
+   
 
     public void setNome(String nome) {
         this.nome = nome;

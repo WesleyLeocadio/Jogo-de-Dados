@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Jogo {
 
     private final Dado dado1, dado2;
-    private Jogador jogador1, jogador2;
+    private Jogador[] jogadores;
     private int resultado;
     private final Scanner entrada;
 
@@ -23,10 +23,14 @@ public class Jogo {
      * Esse metodo recebe o nome dos jogadores
      */
     public void inserirJogadores() {
-        System.out.println("Informe o nome do Jogador 1");
-        jogador1.setNome(entrada.next());
-        System.out.println("Informe o nome do Jogador 2");
-        jogador2.setNome(entrada.next());
+        System.out.println("Informe a quantidade de jogadores: ");
+        int qtd =  entrada.nextInt();
+        jogadores = new Jogador[qtd];
+        for(int i=0; i< jogadores.length; i++){
+            System.out.println("Informe o nome do Jogador ");
+               jogadores[i]= new Jogador (entrada.next());
+        }
+  
 
     }
 
@@ -34,10 +38,10 @@ public class Jogo {
      * Esse metodo recebe as apostas dos jogadores ja inseridos
      */
     public void inserirApostas() {
-        System.out.println(jogador1.getNome() + ", informe o valor da sua aposta");
-        jogador1.setValorAposta(entrada.nextInt());
-        System.out.println(jogador2.getNome() + ", informe o valor da sua aposta");
-        jogador2.setValorAposta(entrada.nextInt());
+        for(int i =0; i<jogadores.length; i++){
+            System.out.println(jogadores[i].getNome()+ ", informe o valor da aposta:");
+            jogadores[i].setValorAposta(entrada.nextInt());
+        }
     }
 
     /**
@@ -60,13 +64,17 @@ public class Jogo {
      * Esse metodo mostra quem venceu o jogo
      */
     public void mostrarVencedor() {
-        if (resultado == jogador1.getValorAposta()) {
-            System.out.println(jogador1.getNome() + " ganhou!");
-        } else if (resultado == jogador2.getValorAposta()) {
-            System.out.println(jogador2.getNome() + " ganhou!");
-        } else {
-            System.out.println("O computador ganhou!");
+        
+        
+        for(int i = 0; i<jogadores.length; i++){
+            if(resultado == jogadores[i].getValorAposta()){
+                System.out.println(jogadores[i].getNome()+", você ganhou!!");
+                return;
+            }
+                
         }
+                 System.out.println("O computador ganhou!");
+        
     }
 
 }
